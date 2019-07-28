@@ -43,29 +43,35 @@
                 style="width: 100%;"
                 v-loading="listLoading" border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column sortable label="用户账号" prop="username" width="180" align="center">
+        <el-table-column sortable label="用户名称" width="120" align="center">
+          <template slot-scope="scope">
+            <img  style="width: 65px;height: 65px" :src="scope.row.avatar">
+          </template>
+          </el-table-column>
+        <el-table-column sortable label="用户账号" prop="username" width="200" align="center">
           <template slot-scope="scope">{{scope.row.username}}</template>
         </el-table-column>
-        <el-table-column sortable label="用户名称" width="180" align="center">
+        <el-table-column sortable label="用户名称" width="150" align="center">
           <template slot-scope="scope">{{scope.row.desc}}</template>
         </el-table-column>
-        <el-table-column sortable label="角色" width="180" align="center">
+        <el-table-column sortable label="角色" width="200" align="center">
           <template slot-scope="scope">
             <el-tag size="mini" v-for="(role, index) in scope.row.roles" :key="index">{{ role.description }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column sortable label="用户所属渠道"  align="center">
-          <template slot-scope="scope">
-            <el-tag size="small" v-for="(pid, index) in scope.row.pids" :key="index">{{ pid }}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column sortable label="手机号码" width="180" align="center">
+        <el-table-column sortable label="上次登录IP" width="200" align="center">
           <template slot-scope="scope">{{scope.row.mobile}}</template>
         </el-table-column>
-        <el-table-column sortable label="上次登录时间" width="160" prop="last_login" align="center">
+        <el-table-column sortable label="手机号码" width="200" align="center">
+          <template slot-scope="scope">{{scope.row.last_ip}}</template>
+        </el-table-column>
+        <el-table-column sortable label="手机号码" width="250" align="center">
+          <template slot-scope="scope">{{scope.row.last_login}}</template>
+        </el-table-column>
+        <el-table-column sortable label="上次登录时间" width="280" prop="last_login" align="center">
           <template slot-scope="scope">{{ scope.row.last_login | formatLoginTime}}</template>
         </el-table-column>
-        <el-table-column label="操作" width="280" align="center">
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
               icon="el-icon-edit"
