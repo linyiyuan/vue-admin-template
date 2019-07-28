@@ -12,9 +12,6 @@
           <i class="el-icon-caret-bottom"></i>
         </div>
        <el-dropdown-menu class="user-dropdown" slot="dropdown">
-        <el-dropdown-item >
-          <span @click="getDownloadUrl">下载地址</span>
-        </el-dropdown-item>
         <el-dropdown-item divided>
           <span @click="logout" style="display:block;">退出登录</span>
         </el-dropdown-item>
