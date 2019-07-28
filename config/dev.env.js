@@ -4,7 +4,7 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API: '"http://192.168.2.36:81"',
-  SITENAME: '爱博互娱后台',
+  BASE_API: '"http://192.168.2.36:7002"',
+  SITENAME: 'Vue-admin-template',
   
 })

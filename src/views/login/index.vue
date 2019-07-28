@@ -9,7 +9,7 @@
                label-position="left">
         <div style="text-align: center">
         </div>
-        <h2 class="login-title color-main">爱博互娱后台</h2>
+        <h2 class="login-title color-main">Vue-admin-template</h2>
         <el-form-item prop="username">
           <el-input name="username"
                     type="text"
