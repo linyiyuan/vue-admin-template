@@ -60,7 +60,6 @@
     desc: '',
     avatar: '',
     status: 1,
-    pid: '',
     mobile: '',
     roleData: '',
     password_confirmation: '',
@@ -86,7 +85,6 @@
       return {
         user:Object.assign({}, defaultUser),
         roles: '',
-        pids: '',
         rules: {
           username: [
             {required: true, message: '情输入用户名', trigger: 'blur'},
@@ -113,15 +111,11 @@
           this.roles = response.data
         });
 
-       getPidSearch().then(response => {
-          this.pids = response.data
-       });
 
        //判断是否为修改
        if (this.isEdit == true) {
           userList({id: this.$route.query.id, type: 'getOne'}).then(response => {
               let userData= response.data
-              userData.pid = userData.pid.split(',');
               this.user = Object.assign({},userData);
           });
           delete this.rules.password_confirmation

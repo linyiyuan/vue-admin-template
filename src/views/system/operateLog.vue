@@ -101,7 +101,7 @@
   };
   export default {
     name: "rechargeDailySum",
-    components:{conditional},
+    components:{},
     data() {
       return {
         listQuery: Object.assign({}, defaultListQuery),
