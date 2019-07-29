@@ -59,17 +59,17 @@
             <el-tag size="mini" v-for="(role, index) in scope.row.roles" :key="index">{{ role.description }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column sortable label="上次登录IP" width="200" align="center">
+        <el-table-column sortable label="手机号码" width="160" align="center">
           <template slot-scope="scope">{{scope.row.mobile}}</template>
         </el-table-column>
-        <el-table-column sortable label="手机号码" width="200" align="center">
+        <el-table-column sortable label="上次登录IP" width="160" align="center">
           <template slot-scope="scope">{{scope.row.last_ip}}</template>
         </el-table-column>
-        <el-table-column sortable label="手机号码" width="250" align="center">
-          <template slot-scope="scope">{{scope.row.last_login}}</template>
+        <el-table-column sortable label="上次登录时间" width="250" align="center">
+          <template slot-scope="scope">{{scope.row.last_login | formatLoginTime}}</template>
         </el-table-column>
-        <el-table-column sortable label="上次登录时间" width="280" prop="last_login" align="center">
-          <template slot-scope="scope">{{ scope.row.last_login | formatLoginTime}}</template>
+        <el-table-column sortable label="创建时间" width="230" prop="last_login" align="center">
+          <template slot-scope="scope">{{ scope.row.create_time | formatLoginTime}}</template>
         </el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
