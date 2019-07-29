@@ -34,7 +34,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="用户头像：">
-        <single-upload v-model="user.avatar"></single-upload>
+        <single-upload v-model="user.avatar" savePath="admin_face"></single-upload>
       </el-form-item>
       <el-form-item label="状态：">
         <el-radio-group v-model="user.status">
