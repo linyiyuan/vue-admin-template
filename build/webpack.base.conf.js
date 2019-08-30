@@ -90,6 +90,8 @@ module.exports = {
   },
   externals: {
   vue: 'Vue',
-  'element-ui':'ELEMENT'
+  'element-ui':'ELEMENT',
+  "echarts": "echarts",
+  "vCharts": "v-charts"
  }
 }
