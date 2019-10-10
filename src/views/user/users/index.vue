@@ -181,11 +181,6 @@
       },
       handleResetPassword() {
           resetPassword({postData: this.resetPasswordForm}).then(response=>{
-            this.$message({
-              message: '重置密码成功',
-              type: 'success',
-              duration: 1000
-            });
             this.getList();
             this.resetPasswordForm = Object.assign({}, defaultResetPasswordForm)
             this.resetPasswordDialogVisible = false;
@@ -231,11 +226,6 @@
           type: 'warning'
         }).then(() => {
           deleteUser(id).then(response=>{
-            this.$message({
-              message: '删除成功！',
-              type: 'success',
-              duration: 1000
-            });
             this.getList();
           });
         })

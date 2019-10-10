@@ -138,22 +138,12 @@
               if (this.isEdit) {
                 updateUser(this.user.id, {postData: this.user}).then(response => {
                   this.$refs[userForm].resetFields();
-                  this.$message({
-                    message: '修改成功',
-                    type: 'success',
-                    duration:1000
-                  });
                   this.$router.back();
                 });
               } else {
                   createUser({postData: this.user}).then(response => {
                   this.$refs[userForm].resetFields();
                   this.user = Object.assign({},defaultUser);
-                  this.$message({
-                    message: '添加用户成功',
-                    type: 'success',
-                    duration:1000
-                  });
                   this.$router.back();
                 });
               }
