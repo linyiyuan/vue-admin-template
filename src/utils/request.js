@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
+import { Loading } from 'element-ui';
 
 // 创建axios实例
 const service = axios.create({
@@ -24,7 +25,6 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(
   response => {
-
     /**
      * code为非200是抛错 可结合自己业务进行修改
      */

@@ -191,18 +191,21 @@ export default {
     handleAddRole() {
       this.$refs['roleForm'].validate((valid) => {
         if (valid) {
+          this.createRoleDialogVisible = false
+          this.listLoading = true
           if (this.type == 'add') {
             createRole({ postData: this.roleForm }).then(response => {
               if (response.errorCode == 200) {
                 this.getList();
-                this.createRoleDialogVisible = false
+                this.listLoading = false
+                
               }
             })
           } else {
             updateRole(this.roleForm.id, { postData: this.roleForm }).then(response => {
               if (response.errorCode == 200) {
                 this.getList();
-                this.createRoleDialogVisible = false
+                this.listLoading = false
               }
             })
           }
@@ -215,7 +218,7 @@ export default {
           return false;
         }
       });
-      
+
     },
     deleteUser(id) {
       this.$confirm('是否要进行该删除操作?', '提示', {
