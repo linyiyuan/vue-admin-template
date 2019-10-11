@@ -51,7 +51,7 @@
                 style="width: 100%;"
                 @selection-change="handleSelectionChange"
                 v-loading="listLoading" border>
-        <el-table-column label="用户Id"  width="80"  sortable prop="ID">
+        <el-table-column label="用户Id"  width="90"  sortable prop="ID">
           <template slot-scope="scope">{{scope.row.uid}}</template>
         </el-table-column>
         <el-table-column label="用户名" width="180" >

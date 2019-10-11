@@ -7,19 +7,6 @@
             </el-card>
             <el-tabs v-model="activeName">
                 <el-tab-pane label="基本信息" name="index">
-
-                    <!-- <div class="panel-body">
-                        <ul>
-                            <li v-for="v in config">
-                                <el-row :gutter="20">
-                                    <el-col :span="24">
-                                        <i :class="v.icon"> &nbsp;{{ v.name}} : </i>
-                                        {{ v.config }}
-                                    </el-col>
-                                </el-row>
-                            </li>
-                        </ul>
-                    </div> -->
                     <el-table
                       border
                       :data="config"
@@ -61,6 +48,27 @@
                       </el-table-column>
                     </el-table>
                 </el-tab-pane>
+                 <el-tab-pane label="项目信息" name="project_info">
+                   <el-table
+                      border
+                      :data="project_info"
+                      style="width: 100%">
+                      <el-table-column
+                        label="配置项"
+                        width="200">
+                        <template slot-scope="scope">
+                          <span style="margin-left: 10px">{{ scope.row.name }}</span>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        label="配置信息"
+                        >
+                        <template slot-scope="scope">
+                          <span style="margin-left: 10px">{{ scope.row.config }}</span>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                </el-tab-pane>
             </el-tabs>
         </el-card>
     </div>
@@ -73,19 +81,21 @@
             return {
                 activeName: 'index',
                 config: [],
-                api_config: []
+                api_config: [],
+                project_info: [],
             }
         },
 
         mounted() {
             getSystemConfig().then(response => {
-                this.config = response.data;
+                this.config = response.data.config;
+                this.project_info = response.data.project_info;
             });
        
             this.api_config = [
                 {
                     name: '项目名',
-                    config: '万炮捕鱼大富豪',
+                    config: 'Vue-admin-template',
                     icon: 'el-icon-delete-solid'
                 },
                 {
@@ -95,7 +105,7 @@
                 },
                 {
                     name: '前端UI框架',
-                    config: 'Element UI 2.4.11',
+                    config: 'Element UI 2.12.0',
                     icon: 'fa fa-css3'
                 },
             ];

@@ -3,71 +3,46 @@
     <el-card class="operate-container" shadow="never">
       <i class="el-icon-tickets"></i>
       <span>数据列表</span>
-      <el-button style="float: right;" 
-                 icon="el-icon-plus"
-                 type="primary"
-                 size="small"
-                 @click="handleViewPermission('add', '', '0', '顶级')"
-                >添加权限
+      <el-button style="float: right;" icon="el-icon-plus" type="primary" size="small" @click="handleViewPermission('add', '', '0', '顶级')">添加权限
       </el-button>
     </el-card>
     <div class="tree">
       <el-card class="operate-container" shadow="never">
-      	<el-tree
-  	      :data="data"
-  	      node-key="id"
-  	      :indent="40"
-  	      :props="defaultProps"
-  	      :expand-on-click-node="false">
-  	      <span class="custom-tree-node" slot-scope="{ node, data }">
-  	        <span>{{ node.label }}</span>
-  	        <span>
-  	          <el-button
-  	            type="success"
-  	            icon="el-icon-plus"
-  	            circle
-  	            size="medium"
-  	            @click="() => handleViewPermission('add', '', data.id, node.label)">
-  	          </el-button>
-  	          <el-button
-  	            type="primary"
-  	            icon="el-icon-edit"
-  	            circle
-  	            size="medium"
-  	            @click="() => handleViewPermission('edit', data, data.id, node.label)">
-  	          </el-button>
-  	          <el-button
-  	            type="danger"
-  	            icon="el-icon-delete"
-  	            circle
-  	            size="medium"
-  	            @click="() => deletePermission(data.id)">
-  	          </el-button>
-  	        </span>
-  	      </span>
-  	    </el-tree>
+        <el-tree :data="data" node-key="id" :indent="40" :props="defaultProps" :expand-on-click-node="false">
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span>{{ node.label }}</span>
+            <span>
+              <el-button type="success" icon="el-icon-plus" circle size="medium" @click="() => handleViewPermission('add', '', data.id, node.label)">
+              </el-button>
+              <el-button type="primary" icon="el-icon-edit" circle size="medium" @click="() => handleViewPermission('edit', data, data.id, node.label)">
+              </el-button>
+              <el-button type="danger" icon="el-icon-delete" circle size="medium" @click="() => deletePermission(data.id)">
+              </el-button>
+            </span>
+          </span>
+        </el-tree>
       </el-card>
-	     <!-- 添加/修改权限 -->
-	     <el-dialog :title="show_name" :visible.sync="createPermissionDialogVisible"  width="500px" :close-on-click-modal="false">
-	        <el-form ref="permissionForm" :model="permissionForm" :rules="permissionRule" label-width="80px">
-	        <el-form-item label="权限名" prop="name">
-	          <el-input v-model="permissionForm.name"  auto-complete="off" size="medium"></el-input>
-	        </el-form-item>
-	        <el-form-item label="权限描述" prop="display_name">
-	          <el-input v-model="permissionForm.display_name" auto-complete="off" size="medium"></el-input>
-	        </el-form-item>
-	        <el-form-item label="是否显示">
+      <!-- 添加/修改权限 -->
+      <el-dialog :title="show_name" :visible.sync="createPermissionDialogVisible" width="500px" :close-on-click-modal="false">
+        <el-form ref="permissionForm" :model="permissionForm" :rules="permissionRule" label-width="80px">
+          <el-form-item label="权限名" prop="name">
+            <el-input v-model="permissionForm.name" auto-complete="off" size="medium"></el-input>
+          </el-form-item>
+          <el-form-item label="权限描述" prop="display_name">
+            <el-input v-model="permissionForm.display_name" auto-complete="off" size="medium"></el-input>
+          </el-form-item>
+          <el-form-item label="是否显示">
             <el-radio-group v-model="permissionForm.is_display">
               <el-radio :label="1">启动</el-radio>
               <el-radio :label="0">停用</el-radio>
             </el-radio-group>
-        </el-form-item>
-	      </el-form>
-	      <div slot="footer">
-	        <el-button  size="small" @click="createPermissionDialogVisible = false">取 消</el-button>
-	        <el-button  size="small" type="primary" @click="handleAddPermission()">确 定</el-button>
-	      </div>
-	    </el-dialog>
+          </el-form-item>
+        </el-form>
+        <div slot="footer">
+          <el-button size="small" @click="createPermissionDialogVisible = false">取 消</el-button>
+          <el-button size="small" type="primary" @click="handleAddPermission()">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -86,11 +61,11 @@
           label: 'display_name'
         },
         permissionForm: {
-        	id: null,
-        	name: null,
-        	display_name: null,
-        	pid: null,
-        	is_display: 1,
+          id: null,
+          name: null,
+          display_name: null,
+          pid: null,
+          is_display: 1,
         },
         permissionRule: {
             name: [
@@ -127,7 +102,7 @@
       },
       getList() {
         getPermission({type: 'tree'}).then(response => {
-        	this.data = response.data.list
+          this.data = response.data.list
         });
       },
       deletePermission(id){
@@ -137,11 +112,6 @@
           type: 'warning'
         }).then(() => {
           deletePermission(id).then(response=>{
-            this.$message({
-              message: '删除成功！',
-              type: 'success',
-              duration: 1000
-            });
             this.getList();
           });
         })
@@ -152,35 +122,13 @@
             if (this.type == 'add') {
               createPermission({postData: this.permissionForm}).then(response => {
                   if (response.errorCode == 200) {
-                      this.$message({
-                        message: response.data,
-                        type: 'success',
-                        duration:1000
-                      });
                       this.getList();
-                  }else{
-                    this.$message({
-                        message: response.data,
-                        type: 'success',
-                        duration:1000
-                      });
                   }
               })
             }else{
               updatePermission(this.permissionForm.id,{postData: this.permissionForm}).then(response => {
                   if (response.errorCode == 200) {
-                      this.$message({
-                        message: response.data,
-                        type: 'success',
-                        duration:1000
-                      });
                       this.getList();
-                  }else{
-                    this.$message({
-                        message: response.data,
-                        type: 'success',
-                        duration:1000
-                      });
                   }
               })
             }
@@ -196,38 +144,39 @@
         });
         this.createPermissionDialogVisible = false
       },
-  	}
-  };	
+    }
+  };  
 </script>
 <style type="text/css">
 .tree .el-tree-node__content {
   height: 45px;
   line-height: 40px;
 }
-</style>
 
+</style>
 <style scoped>
-  .input-width {
-    width: 203px;
+.input-width {
+  width: 203px;
 
-  }
-  .tree{
-  	margin-top: 20px;
-  }
-  .el-tree>.el-tree-node__content {
+}
 
-	height: 46px;
+.tree {
+  margin-top: 20px;
+}
 
-	}
-  .custom-tree-node {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    padding-right: 8px;
-  }
-  
+.el-tree>.el-tree-node__content {
+
+  height: 46px;
+
+}
+
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  padding-right: 8px;
+}
+
 </style>
-
-
