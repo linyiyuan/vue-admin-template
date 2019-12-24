@@ -90,6 +90,48 @@ export const asyncRouterMap = [{
     ]
   },
   {
+    path: '/picture_bed',
+    component: Layout,
+    name: 'Api:picture_bed',
+    redirect: '/picture_bed/photo_album',
+    alwaysShow: true,
+    meta: { title: '图床管理', icon: 'picture_bed' },
+    children: [{
+        path: 'photo_album',
+        name: 'Api:picture_bed/photo_album-index',
+        component: () => import('@/views/picture_bed/photo_album/index'),
+        meta: { title: '相册管理', icon: 'photo_album' }
+      },
+      {
+        path: 'photo_album/create',
+        name: 'Api:picture_bed/photo_album-store',
+        component: () => import('@/views/picture_bed/photo_album/create'),
+        meta: { title: ' 添加相册', icon: 'product-add' },
+        hidden: true
+      },
+      {
+        path: 'photo_album/update',
+        name: 'Api:picture_bed/photo_album-update',
+        component: () => import('@/views/picture_bed/photo_album/update'),
+        meta: { title: '修改相册', icon: 'product-add' },
+        hidden: true
+      },
+      {
+        path: 'photo',
+        name: 'Api:picture_bed/photo-index',
+        component: () => import('@/views/picture_bed/photo/index'),
+        meta: { title: '图片管理', icon: 'photo_upload' },
+      },
+      {
+        path: 'photo/create',
+        name: 'Api:picture_bed/photo-store',
+        component: () => import('@/views/picture_bed/photo/create'),
+        meta: { title: '图片上传', icon: 'photo_upload' },
+        hidden: true
+      },
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     name: 'Api:system',
