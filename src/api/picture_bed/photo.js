@@ -31,10 +31,10 @@ export function getOnePhoto(id) {
   })
 }
 
-export function deletePhoto(id) {
+export function deletePhoto(id,params) {
   return request({
     url:'/picture_bed/photo' + '/' + id,
     method:'delete',
-    data:id,
+    data: params,
   })
 }

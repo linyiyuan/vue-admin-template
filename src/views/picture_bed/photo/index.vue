@@ -24,9 +24,12 @@
       <span>数据列表</span>
       <el-button style="float: right;" icon="el-icon-plus" type="primary" size="mini" @click="handleAddPhoto">上传图片
       </el-button>
+      <el-button style="float: right; margin-right: 20px" icon="el-icon-delete" type="danger" size="mini" @click="deleteSelectdPhoto">删除选中图片
+      </el-button>
     </el-card>
     <div class="table-container">
-      <el-table ref="photoAlbumTable" :data="list" style="width: 100%;" v-loading="listLoading" border>
+      <el-table ref="photoAlbumTable" :data="list" style="width: 100%;" v-loading="listLoading"  @selection-change="handleSelectionChange" border>
+        <el-table-column type="selection" width="60" align="center"></el-table-column>
         <el-table-column sortable label="图片缩略图" width="300" align="center">
           <template slot-scope="scope">
             <img style="width: 250px;height: 150px" :src="scope.row.photo_url">
@@ -118,7 +121,7 @@ export default {
       });
     },
     handleAddPhoto() {
-      this.$router.push({ path: '/picture_bed/photo/create', query: {photo_album : this.listQuery.photo_album} });
+      this.$router.push({ path: '/picture_bed/photo/create', query: { photo_album: this.listQuery.photo_album } });
     },
     getPhotoAlbumList() {
       getPhotoAlbum({ 'type': 'getPhotoAlbumList' }).then(response => {
@@ -127,8 +130,8 @@ export default {
       });
     },
     photoAlbumChange(photo_album) {
-        this.listQuery.photo_album = photo_album
-        this.getList();
+      this.listQuery.photo_album = photo_album
+      this.getList();
     },
     deletePhoto(id) {
       this.$confirm('是否要进行该删除操作?', '提示', {
@@ -141,6 +144,24 @@ export default {
         });
       })
     },
+     handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    deleteSelectdPhoto() {
+      var ids = [];
+      ids = this.multipleSelection.map(function(item){
+          return item.id
+      })      
+      this.$confirm('是否要批量删除操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deletePhoto(0, {'ids': ids}).then(response => {
+          this.getList();
+        });
+      })
+    }
   }
 }
 
