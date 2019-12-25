@@ -8,7 +8,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="图片上传：">
-        <multi-upload v-model="photo.photo_url" :savePath="test_photo"></multi-upload>
+        <multi-upload v-model="photo.photo_url" :savePath="savePath"></multi-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('photo_form')">提交</el-button>
@@ -40,8 +40,10 @@ export default {
   data() {
     return {
       photo: Object.assign({}, defaultPhoto),
+      savePath: '0',
       roles: '',
       photoAlbumList: [],
+      photoAlbumKeyValue: [],
       rules: {
         photo_name: [
           { required: true, message: '请填写相册名', trigger: 'blur' },
@@ -50,8 +52,10 @@ export default {
     }
   },
   created() {
-    this.photo.photo_album = parseInt(this.$route.query.photo_album)
-    this.getPhotoAlbumList();
+    this.photo.photo_album = 
+    this.savePath = parseInt(this.$route.query.photo_album) ? parseInt(this.$route.query.photo_album): null
+    this.savePath = 'photo_album_' + this.savePath
+    this.getPhotoAlbumList();     
   },
   methods: {
     onSubmit(photo_Form) {
