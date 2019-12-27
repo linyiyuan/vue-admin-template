@@ -2,19 +2,25 @@
   <el-card class="form-container" shadow="never">
     <el-form :model="photo_album" :rules="rules" ref="photo_album_form" label-width="150px">
       <el-form-item label="相册名：" prop="album_name">
-        <el-input v-model="photo_album.album_name"></el-input>
+        <el-input v-model="photo_album.album_name" placeholder="请输入相册名"></el-input>
       </el-form-item>
       <el-form-item label="相册描述：">
-        <el-input v-model="photo_album.album_desc"></el-input>
+        <el-input v-model="photo_album.album_desc" placeholder="请输入相册描述"></el-input>
       </el-form-item>
       <el-form-item label="相册作者：">
-        <el-input v-model="photo_album.album_author"></el-input>
+        <el-input v-model="photo_album.album_author" placeholder="请输入相册作者"></el-input>
       </el-form-item>
       <el-form-item label="相册类型：">
         <el-select v-model="photo_album.album_type">
           <el-option :value=1 label="普通相册"></el-option>
           <el-option :value=2 label="密码相册"></el-option>
         </el-select>
+      </el-form-item>
+      <el-form-item label="访问问题：" v-if="photo_album.album_type == 2" placeholder="请输入访问问题">
+        <el-input v-model="photo_album.album_question"></el-input>
+      </el-form-item>
+      <el-form-item label="访问密码：" v-if="photo_album.album_type == 2" placeholder="请输入访问密码">
+        <el-input v-model="photo_album.album_answer"></el-input>
       </el-form-item>
       <el-form-item label="相册封面：">
         <single-upload v-model="photo_album.album_cover" savePath="photo_album"></single-upload>
@@ -43,6 +49,8 @@
     album_status: 1,
     album_cover: null,
     album_author: null,
+    album_question: null,
+    album_answer: null,
   };
   export default {
     name: 'PhotoAlbumDetail',
