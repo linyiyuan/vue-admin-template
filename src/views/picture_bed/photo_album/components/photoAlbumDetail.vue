@@ -22,6 +22,9 @@
       <el-form-item label="访问密码：" v-if="photo_album.album_type == 2" placeholder="请输入访问密码">
         <el-input v-model="photo_album.album_answer"></el-input>
       </el-form-item>
+      <el-form-item label="相册排序：">
+         <el-input v-model="photo_album.album_sort" placeholder="请输入相册排序"></el-input>
+      </el-form-item>
       <el-form-item label="相册封面：">
         <single-upload v-model="photo_album.album_cover" savePath="photo_album"></single-upload>
       </el-form-item>
@@ -51,6 +54,7 @@
     album_author: null,
     album_question: null,
     album_answer: null,
+    album_sort: 99,
   };
   export default {
     name: 'PhotoAlbumDetail',

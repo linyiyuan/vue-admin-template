@@ -41,8 +41,11 @@
         <el-table-column  label="相册作者" width="120" align="center">
           <template slot-scope="scope">{{scope.row.album_author}}</template>
         </el-table-column>
-        <el-table-column sortable label="相册浏览人数" width="160" align="center">
+        <el-table-column sortable label="浏览人数" width="120" align="center">
           <template slot-scope="scope">{{scope.row.album_click_num}}</template>
+        </el-table-column>
+        <el-table-column sortable label="相册排序" width="120" align="center">
+          <template slot-scope="scope">{{scope.row.album_sort}}</template>
         </el-table-column>
         <el-table-column sortable label="创建时间" width="160" align="center">
           <template slot-scope="scope">{{scope.row.created_at}}</template>
