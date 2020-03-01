@@ -150,6 +150,12 @@ export const asyncRouterMap = [{
         component: () => import('@/views/system/operateLog/'),
         meta: { title: '操作日志', icon: 'log' }
       },
+      {
+        path: 'getNetraffic',
+        name: 'Api:system/get_netraffic-netraffic',
+        component: () => import('@/views/system/netraffic/'),
+        meta: { title: '流量监控', icon: 'netraffic' }
+      },
     ]
   },
 
