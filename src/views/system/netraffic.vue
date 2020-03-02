@@ -50,8 +50,6 @@ import store from '@/store';
 const defaultListQuery = {
   date: '2014-08-21',
   time_interval: 30,
-  begin_time: '00:00:00',
-  end_time: '23:59:59' ,
   website: '',
 };
 export default {
