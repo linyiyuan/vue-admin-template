@@ -65,7 +65,11 @@ export default {
       }
     }
     this.chartSettings = {
-        area: true
+        area: true,
+         labelMap: {
+          'outPut': '流出流量',
+          'inPut': '流入流量'
+        },
       }
     return {
       listQuery: Object.assign({}, defaultListQuery),
